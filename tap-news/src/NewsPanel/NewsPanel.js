@@ -74,3 +74,5 @@ class NewsPanel extends React.Component {
     }
   }
 }
+
+export default NewsPanel;
