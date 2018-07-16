@@ -1,0 +1,23 @@
+.news-intro-col {
+  display: inline-flex;
+  color: black;
+  height: 100%;
+}
+
+.news-intro-panel {
+  margin: auto 5px;
+  text-align: left;
+}
+
+.news-description p {
+  font-size: 18px;
+}
+
+.news-chip {
+  font-size: 18px;
+}
+
+.fill {
+  display: flex;
+  justify-content: center;
+}
