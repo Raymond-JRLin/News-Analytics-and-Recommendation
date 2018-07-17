@@ -15,27 +15,16 @@ class NewsPanel extends React.Component {
   }
 
   loadMoreNews(e) {
-    this.setState({
-      news: [
-        { 'url': 'http://us.cnn.com/2017/02/15/politics/andrew-puzder-failed-nomination/index.html',
-          'title': "Inside Andrew Puzder's failed nomination",
-          'description': "In the end, Andrew Puzder had too much baggage",
-          'source': "cnn",
-          'urlToImage': 'https://cdn.cnn.com/cnnnext/dam/assets/170215143754-andrew-puzder-exlarge-169.jpg',
-          'digest':"3RjuEomJo2601syZbU7OHA==\n",
-          'reason': "Recommand"
-        }, {
-          'url': 'http://techcrunch.com/2017/03/23/zero-motorcycles-cto-abe-askenazi-on-the-future-of-two-wheeled-evs/index.html',
-          'title': "Zero Motorcycles CTO Abe Askenazi on the future of two-wheeled EVs",
-          'description': "In the end, Andrew Puzder had too much baggage",
-          'source': "techcrunch",
-          'urlToImage': 'http:i2.cdn.cnn.com/cnnnext/dam/assets/1702151625-4-',
-          'digest':"3RjuEomJo2601syZbU7OHA==\n",
-          'time': "Today",
-          'reason': "Hot"
-        }
-      ]
-    })
+    const request = new Request('http://localhost:3000/news', {
+      method: 'GET'
+    });
+
+    fetch(request).then((res) => res.json())
+                  .then((news) => {
+                    this.setState({
+                      news: this.state.news ? this.state.news.concat(news) : news,
+                    });
+                  });
   }
 
   renderNews() {
