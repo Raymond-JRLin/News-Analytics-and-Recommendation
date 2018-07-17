@@ -1,4 +1,5 @@
 import './NewsPanel.css';
+import _ from 'lodash';
 
 import React from 'react';
 
@@ -13,6 +14,7 @@ class NewsPanel extends React.Component {
 
   componentDidMount() {
     this.loadMoreNews();
+    this.loadMoreNews = _.debounce(this.loadMoreNews, 1000);
     window.addEventListener('scroll', this.handleScroll);
   }
 
@@ -39,7 +41,7 @@ class NewsPanel extends React.Component {
   renderNews() {
     var news_list = this.state.news.map(function (news) {
       return (
-        <a className='list-group-item' key={news.digest} href="#">
+        <a className='list-group-item' href="#">
           <NewsCard news={news} />
         </a>
       );
