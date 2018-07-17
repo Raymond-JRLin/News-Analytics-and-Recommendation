@@ -8,16 +8,25 @@ class NewsPanel extends React.Component {
   constructor() {
     super();
     this.state = {news:null};
+    this.handleScroll = this.handleScroll.bind(this);
   }
 
   componentDidMount() {
     this.loadMoreNews();
+    window.addEventListener('scroll', this.handleScroll);
   }
 
-  loadMoreNews(e) {
-    const request = new Request('http://localhost:3000/news', {
-      method: 'GET'
-    });
+  handleScroll() {
+    let scrollY = window.scrollY || window.pageYOffset || document.documentElement.scrollTop;
+    if ((window.innerHeight + scrollY) >= (document.body.offsetHeight - 50)) {
+      console.log('Loading more news');
+      this.loadMoreNews();
+    }
+  }
+
+  loadMoreNews() {
+    let request = new Request('http://localhost:3000/news', {
+      method: 'GET'});
 
     fetch(request).then((res) => res.json())
                   .then((news) => {
