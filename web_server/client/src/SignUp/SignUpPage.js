@@ -1,5 +1,5 @@
-import React, { PropTypes } from 'react';
-
+import React from 'react';
+import PropTypes from 'prop-types';
 import SignUpForm from './SignUpForm'
 
 class SignUpPage extends React.Component {
@@ -17,8 +17,8 @@ class SignUpPage extends React.Component {
             }
         };
 
-        this.submitForm = this.submitForm.bind(this);
-        this.changeForm = this.changeForm.bind(this);
+        this.processForm = this.processForm.bind(this);
+        this.changeUser = this.changeUser.bind(this);
     }
 
     processForm(event) {
@@ -63,7 +63,7 @@ class SignUpPage extends React.Component {
                   errors.summary = json.message;
                   console.log(this.state.errors);
                   this.setState({errors});
-              }.bind(this));
+              });
           }
         });
     }
@@ -91,8 +91,8 @@ class SignUpPage extends React.Component {
     render() {
         return (
             <SignUpForm
-                onSubmit={this.submitForm}
-                onChange={this.changeForm}
+                onSubmit={this.processForm}
+                onChange={this.changeUser}
                 errors={this.state.errors}
                 user={this.state.user}
             />

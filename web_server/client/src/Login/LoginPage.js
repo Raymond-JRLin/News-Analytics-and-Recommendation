@@ -1,7 +1,10 @@
 import LoginForm from './LoginForm';
 import Auth from '../Auth/Auth';
+import PropTypes from 'prop-types';
+import React from 'react';
 
-class Login extends React.Component {
+
+class LoginPage extends React.Component {
 
     constructor(props, context) {
         super(props, context);
@@ -20,7 +23,7 @@ class Login extends React.Component {
     }
 
     processForm(event) {
-      // prevent default action, in this case, action is the form submission event
+        // prevent default action, in this case, action is the form submission event
         event.preventDefault();
 
         const email = this.state.user.email;
@@ -31,33 +34,33 @@ class Login extends React.Component {
 
         // Post login data
         fetch('https://localhost:3000/auth/login', {
-                method: 'POST',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    email: this.state.user.email,
-                    password: this.state.suer.password
-                })
+          method: 'POST',
+          headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+              email: this.state.user.email,
+              password: this.state.suer.password
+          })
         }).then(response => {
           if (response.status === 200) {
               this.setState({
                 errors:{}
               });
 
-              response.json().then(funtion(json) {
+              response.json().then(json => {
                   console.log(json);
                   Auth.authenticateUser(json.token, email);
                   this.context.router.replace('/');
-              }.bind(this));
+              });
           } else {
               console.log("Login failed");
               response.json().then(json => {
                   const errors = json.errors ? json.errors : {};
                   errors.summary = json.message;
                   this.setState({errors});
-              }.bind(this));
+              });
           }
         });
     }

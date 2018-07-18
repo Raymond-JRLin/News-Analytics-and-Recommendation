@@ -1,5 +1,6 @@
-import React, { PropTypes } from 'react';
-import './Login.css';
+import React from 'react';
+import './LoginForm.css';
+import PropTypes from 'prop-types';
 
 const LoginForm = ({
     onSubmit,
