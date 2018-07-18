@@ -78,14 +78,14 @@ class Login extends React.Component {
                 onSubmit={this.submitForm}
                 onChange={this.changeForm}
                 errors={this.state.errors}
-                userinfo={this.state.userinfo}
+                user={this.state.user}
             />
         );
     }
 }
 
-Login.contextTypes = {
+LoginPage.contextTypes = {
     router: PropTypes.object.isRequired
 }
 
-export default Login;
+export default LoginPage;
