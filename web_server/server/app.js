@@ -18,6 +18,9 @@ app.use('/static', express.static(path.join(__dirname, '../client/build/static/'
 // TODO: remove this after development is done
 app.use(cors());
 
+var config = require('./config/config.json');
+require('./models/main.js').connect(config.mongoDbUri);
+
 app.use(passport.initialize());
 var localSignupStrategy = require('./passport/signup_passport');
 var localLoginStrategy = require('./passport/login_passport');
