@@ -6,10 +6,10 @@ def test_basic():
     assert db.test.count() == 0
     db.demo.insert({"test": 123})
     assert db.demo.count() == 1
-    '''
+
     db.demo.drop()
     assert db.demo.count() == 0
-    '''
+    
     print 'test_basic passed!'
 
 if __name__ == '__main__':
