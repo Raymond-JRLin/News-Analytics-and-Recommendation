@@ -1,5 +1,6 @@
 var cors = require('cors');
 var express = require('express');
+var passport = require('passport');
 var path = require('path');
 
 var index = require('./routes/index');
@@ -15,6 +16,12 @@ app.use('/static', express.static(path.join(__dirname, '../client/build/static/'
 
 // TODO: remove this after development is done
 app.use(cors());
+
+app.use(passport.initialize());
+var localSignupStrategy = require('./passport/signup_passport');
+var localLoginStrategy = require('./passport/login_passport');
+passport.use('local-signup', localSignupStrategy);
+passport.use('local-login', localLoginStrategy);
 
 app.use('/', index);
 app.use('/news', news);
