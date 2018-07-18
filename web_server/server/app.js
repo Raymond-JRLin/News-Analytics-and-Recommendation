@@ -23,6 +23,10 @@ var localLoginStrategy = require('./passport/login_passport');
 passport.use('local-signup', localSignupStrategy);
 passport.use('local-login', localLoginStrategy);
 
+// pass the authentication checker middleware
+const authCheckMiddleware = require('./middleware/auth_checker');
+app.use('/news', authCheckMiddleware);
+
 app.use('/', index);
 app.use('/news', news);
 
