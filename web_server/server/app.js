@@ -3,6 +3,7 @@ var express = require('express');
 var passport = require('passport');
 var path = require('path');
 
+var auth = require('./routes/auth');
 var index = require('./routes/index');
 var news = require('./routes/news');
 
@@ -28,6 +29,7 @@ const authCheckMiddleware = require('./middleware/auth_checker');
 app.use('/news', authCheckMiddleware);
 
 app.use('/', index);
+app.user('/auth', auth);
 app.use('/news', news);
 
 // catch 404 and forward to error handler
