@@ -3,6 +3,7 @@ import _ from 'lodash';
 
 import React from 'react';
 
+import Auth from '../Auth/Auth';
 import NewsCard from '../NewsCard/NewsCard';
 
 class NewsPanel extends React.Component {
@@ -28,7 +29,12 @@ class NewsPanel extends React.Component {
 
   loadMoreNews() {
     let request = new Request('http://localhost:3000/news', {
-      method: 'GET'});
+      method: 'GET',
+      headers: {
+        'Authorization': 'bearer ' + Auth.getToken(),
+      },
+    });
+
 
     fetch(request).then((res) => res.json())
                   .then((news) => {
