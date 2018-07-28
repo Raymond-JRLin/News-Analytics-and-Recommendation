@@ -16,7 +16,7 @@ router.get('/', function(req, res, next) {
       'title': "Zero Motorcycles CTO Abe Askenazi on the future of two-wheeled EVs",
       'description': "In the end, Andrew Puzder had too much baggage",
       'source': "techcrunch",
-      'urlToImage': 'https://techcrunch2011.files.wordpress.com/2017/03/screen-shot-2017-03-23-at-14-04-01.png?w=764&h=400&crop=1',
+      'urlToImage': 'https://tctechcrunch2011.files.wordpress.com/2017/03/screen-shot-2017-03-23-at-14-04-01.png?w=764&h=400&crop=1',
       'digest':"3RjuEomJo2601syZbU7OHA==\n",
       'time': "Today",
       'reason': "Hot"
