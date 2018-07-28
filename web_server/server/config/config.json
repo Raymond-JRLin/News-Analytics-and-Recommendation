@@ -1,4 +1,4 @@
 {
-  "mongoDbUri": "mongodb://Junrui Lin:ljr520mlab19930224@ds141621.mlab.com:41621/tap_news",
+  "mongoDbUri": "mongodb://junrui:tapnews123@ds141621.mlab.com:41621/tap_news",
   "jwtSecret": "My Side of The Story"
 }
