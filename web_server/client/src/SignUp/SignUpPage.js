@@ -38,17 +38,23 @@ class SignUpPage extends React.Component {
         }
 
         // Post registration data
-        fetch('https://localhost:3000/auth/signup', {
-          method: 'POST',
-          headers: {
-              'Accept': 'application/json',
-              'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-              email: this.state.user.email,
-              password: this.state.suer.password
-          })
-        }).then(response => {
+        const url = 'http://localhost:3000/auth/signup';
+        const request = new Request(
+          url,
+          {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                email: this.state.user.email,
+                password: this.state.user.password
+            })
+          }
+        );
+        fetch(request).then(response => {
+          console.log(request);
           if (response.status === 200) {
               this.setState({
                 errors:{}
@@ -91,8 +97,8 @@ class SignUpPage extends React.Component {
     render() {
         return (
             <SignUpForm
-                onSubmit={this.processForm}
-                onChange={this.changeUser}
+                onSubmit={(e) => this.processForm(e)}
+                onChange={(e) => this.changeUser(e)}
                 errors={this.state.errors}
                 user={this.state.user}
             />

@@ -33,7 +33,7 @@ class LoginPage extends React.Component {
         console.log('password:', password);
 
         // Post login data
-        fetch('https://localhost:3000/auth/login', {
+        fetch('http://localhost:3000/auth/login', {
           method: 'POST',
           headers: {
               'Accept': 'application/json',
@@ -41,7 +41,7 @@ class LoginPage extends React.Component {
           },
           body: JSON.stringify({
               email: this.state.user.email,
-              password: this.state.suer.password
+              password: this.state.user.password
           })
         }).then(response => {
           if (response.status === 200) {
