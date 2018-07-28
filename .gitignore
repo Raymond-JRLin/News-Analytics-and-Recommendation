@@ -1,6 +1,20 @@
 # dependencies
-web_server/server/node_modules/
-web_server/client/node_modules/
+node_modules/
+
 
 # compiled output
 *.pyc
+
+
+# IDEs and editors
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+
+
+#System Files
+.DS_Store
+Thumbs.db
