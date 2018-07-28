@@ -1,3 +1,4 @@
+var bodyParser = require('body-parser');
 var cors = require('cors');
 var express = require('express');
 var passport = require('passport');
@@ -18,6 +19,8 @@ app.use('/static', express.static(path.join(__dirname, '../client/build/static/'
 // TODO: remove this after development is done
 app.use(cors());
 
+app.use(bodyParser.json());
+
 var config = require('./config/config.json');
 require('./models/main.js').connect(config.mongoDbUri);
 
@@ -29,10 +32,10 @@ passport.use('local-login', localLoginStrategy);
 
 // pass the authentication checker middleware
 const authCheckMiddleware = require('./middleware/auth_checker');
-app.use('/news', authCheckMiddleware);
 
 app.use('/', index);
-app.user('/auth', auth);
+app.use('/auth', auth);
+app.use('/news', authCheckMiddleware);
 app.use('/news', news);
 
 // catch 404 and forward to error handler
