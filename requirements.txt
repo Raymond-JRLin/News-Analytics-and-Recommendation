@@ -6,4 +6,5 @@ pymongo
 pika
 redis
 requests
+scipy
 sklearn
