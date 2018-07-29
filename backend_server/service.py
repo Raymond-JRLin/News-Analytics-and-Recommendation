@@ -13,8 +13,8 @@ class RequestHandler(pyjsonrpc.HttpRequestHandler):
 
     """ Get news summaries for a user """
     @pyjsonrpc.rpcmethod
-    def getNewsSummariesForUser(self, user_id, page_num):
-        return operations.getNewsSummariesForUser(user_id, page_num)
+    def getNewsSummariesForUser(self, user_id, pageNum):
+        return operations.getNewsSummariesForUser(user_id, pageNum)
 
 # Threading HTTP Server
 HTTP_SERVER = pyjsonrpc.ThreadingHttpServer(
