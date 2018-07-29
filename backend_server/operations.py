@@ -1,4 +1,4 @@
-import json
+pageNimport json
 import os
 import pickle
 import random
@@ -25,10 +25,10 @@ USER_NEWS_TIME_OUT_IN_SECONDS = 60
 redis_client = redis.StrictRedis(REDIS_HOST, REDIS_PORT, db=0)
 
 
-def getNewsSummariesForUser(user_id, page_num):
-    page_num = int(page_num)
-    begin_index = (page_num - 1) * NEWS_LIST_BATCH_SIZE
-    end_index = page_num * NEWS_LIST_BATCH_SIZE
+def getNewsSummariesForUser(user_id, pageNum):
+    pageNum = int(pageNum)
+    begin_index = (pageNum - 1) * NEWS_LIST_BATCH_SIZE
+    end_index = pageNum * NEWS_LIST_BATCH_SIZE
 
     # The final list of news to be returned.
     sliced_news = []
