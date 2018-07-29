@@ -15,7 +15,7 @@ from cloudAMQP_client import CloudAMQPClient
 
 
 DEDUPE_NEWS_TASK_QUEUE_URL = "amqp://jiulgxte:sX5GED6RwJz4IQn5y2Z11yce2AlFriX3@lion.rmq.cloudamqp.com/jiulgxte"
-DEDUPE_NEWS_TASK_QUEUE_NAME = 'tap-news-dedupe-news-task-queue'
+DEDUPE_NEWS_TASK_QUEUE_NAME = "tap-news-dedupe-news-task-queue"
 SLEEP_TIME_IN_SECONDS = 1
 
 NEWS_TABLE_NAME = "news-test"
@@ -50,7 +50,7 @@ def handle_message(msg):
         tfidf = TfidfVectorizer().fit_transform(documents)
         pairwise_sim = tfidf * tfidf.T
 
-        print pairwise_sim
+        print pairwise_sim.A
 
         rows, _ = pairwise_sim.shape
 
