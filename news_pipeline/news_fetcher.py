@@ -11,7 +11,7 @@ import cnn_news_scraper
 from cloudAMQP_client import CloudAMQPClient
 
 DEDUPE_NEWS_TASK_QUEUE_URL = "amqp://jiulgxte:sX5GED6RwJz4IQn5y2Z11yce2AlFriX3@lion.rmq.cloudamqp.com/jiulgxte"
-DEDUPE_NEWS_TASK_QUEUE_NAME = "tap-news-deque-news-task-queue"
+DEDUPE_NEWS_TASK_QUEUE_NAME = "tap-news-dedupe-news-task-queue"
 SCRAPE_NEWS_TASK_QUEUE_URL = "amqp://zelyuksr:XiT0b20lFDZF4rzuSPjUIHtnxOnWKfqZ@rhino.rmq.cloudamqp.com/zelyuksr"
 SCRAPE_NEWS_TASK_QUEUE_NAME = "tap-news-scrape-news-task-queue"
 
