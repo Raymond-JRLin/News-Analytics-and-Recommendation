@@ -1,5 +1,6 @@
-python-dateutil
 lxml
+numpy
+python-dateutil
 python-jsonrpc
 pymongo
 pika
