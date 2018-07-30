@@ -12,6 +12,7 @@ from datetime import datetime
 sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'common'))
 
 import mongodb_client
+from cloudAMQP_client import CloudAMQPClient
 
 REDIS_HOST = "localhost"
 REDIS_PORT = 6379
@@ -22,13 +23,17 @@ NEWS_LIMIT = 100
 NEWS_LIST_BATCH_SIZE = 10
 USER_NEWS_TIME_OUT_IN_SECONDS = 60
 
+LOG_CLICKS_TASK_QUEUE_URL = "amqp://hozukkrj:65WcB6HC5oFRGAAZhbheMuCvxn2QwuRu@lion.rmq.cloudamqp.com/hozukkrj"
+LOG_CLICKS_TASK_QUEUE_NAME = "tap-news-log-clicks-task-queue"
+
 redis_client = redis.StrictRedis(REDIS_HOST, REDIS_PORT, db=0)
+cloudAMQP_client = CloudAMQPClient(LOG_CLICKS_TASK_QUEUE_URL, LOG_CLICKS_TASK_QUEUE_NAME)
 
 
-def getNewsSummariesForUser(user_id, pageNum):
-    pageNum = int(pageNum)
-    begin_index = (pageNum - 1) * NEWS_LIST_BATCH_SIZE
-    end_index = pageNum * NEWS_LIST_BATCH_SIZE
+def getNewsSummariesForUser(user_id, page_num):
+    page_num = int(page_num)
+    begin_index = (page_num - 1) * NEWS_LIST_BATCH_SIZE
+    end_index = page_num * NEWS_LIST_BATCH_SIZE
 
     # The final list of news to be returned.
     sliced_news = []
@@ -60,3 +65,13 @@ def getNewsSummariesForUser(user_id, pageNum):
         if news['publishedAt'].date() == datetime.today().date():
             news['time'] = 'today'
     return json.loads(dumps(sliced_news))
+
+def logNewsClickForUser(user_id, news_id):
+    message = {'userId': user_id, 'newsId': news_id, 'timestamp': datetime.utcnow()}
+
+    db = mongodb_client.get_db()
+    db[CLICK_LOGS_TABLE_NAME].insert(message)
+
+    # Send log task to machine learning service for prediction
+    message = {'userId': user_id, 'newsId': news_id, 'timestamp': str(datetime.utcnow())}
+    cloudAMQP_client.send_message(message)
