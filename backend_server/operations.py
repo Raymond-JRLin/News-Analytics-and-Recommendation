@@ -18,6 +18,7 @@ REDIS_HOST = "localhost"
 REDIS_PORT = 6379
 
 NEWS_TABLE_NAME = "news-test"
+CLICK_LOGS_TABLE_NAME = 'click_logs'
 
 NEWS_LIMIT = 100
 NEWS_LIST_BATCH_SIZE = 10
