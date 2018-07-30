@@ -74,4 +74,4 @@ def logNewsClickForUser(user_id, news_id):
 
     # Send log task to machine learning service for prediction
     message = {'userId': user_id, 'newsId': news_id, 'timestamp': str(datetime.utcnow())}
-    cloudAMQP_client.send_message(message)
+    cloudAMQP_client.sendMessage(message)
