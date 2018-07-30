@@ -28,7 +28,14 @@ class NewsPanel extends React.Component {
   }
 
   loadMoreNews() {
-    let request = new Request('http://localhost:3000/news', {
+    if (this.state.loadedAll === true) {
+      return;
+    }
+
+    let url = 'http://localhost:3000/news/userId/' + Auth.getEmail()
+              + '/pageNum/' + this.state.pageNum;
+
+    let request = new Request(encodeURI(url), {
       method: 'GET',
       headers: {
         'Authorization': 'bearer ' + Auth.getToken(),
