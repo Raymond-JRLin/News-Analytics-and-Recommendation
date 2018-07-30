@@ -4,7 +4,22 @@ import React from 'react';
 
 class NewsCard extends React.Component {
   redirectUrl(url) {
+    this.sendClickLog();
     window.open(url, '_blank');
+  }
+
+  sendClickLog() {
+    let url = 'http://localhost:3000/news/userId/' + Auth.getEmail()
+              + '/newsId/' + this.props.news.digest;
+
+    let request = new Request(encodeURI(url), {
+      method: 'POST',
+      headers: {
+        'Authorization': 'bearer ' + Auth.getToken(),
+      },
+    });
+
+    fetch(request);
   }
 
   render() {
