@@ -1,10 +1,11 @@
 lxml
 numpy
 newspaper
+pandas
+pika
+pymongo
 python-dateutil
 python-jsonrpc
-pymongo
-pika
 redis
 requests
 scipy
