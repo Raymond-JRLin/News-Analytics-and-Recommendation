@@ -20,7 +20,7 @@ DEDUPE_NEWS_TASK_QUEUE_URL = "amqp://jiulgxte:sX5GED6RwJz4IQn5y2Z11yce2AlFriX3@l
 DEDUPE_NEWS_TASK_QUEUE_NAME = "tap-news-dedupe-news-task-queue"
 SLEEP_TIME_IN_SECONDS = 1
 
-NEWS_TABLE_NAME = "news-test"
+NEWS_TABLE_NAME = "news"
 
 SAME_NEWS_SIMILARITY_THRESHOLD = 0.9
 
