@@ -69,7 +69,7 @@ def handle_message(msg):
 
     print 'Updating preference model for new user: %s' % userId
 
-    # Update model using time decaying method
+    # Update model using time decay method
     news = db[NEWS_TABLE_NAME].find_one({'digest': newsId})
     if (news is None
         or 'class' not in news
