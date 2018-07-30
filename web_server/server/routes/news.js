@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 
+var rpc_client = require('../rpc_client/rpc_client');
+
 /* GET news list. */
 router.get('/userId/:userId/pageNum/:pageNum', function(req, res, next) {
   console.log('Fetching news...');
